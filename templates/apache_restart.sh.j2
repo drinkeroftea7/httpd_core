@@ -1,0 +1,13 @@
+#!/bin/bash
+# {{ ansible_managed }}
+# All manual changes will be reverted by the next Ansible run,
+# Which knows neither pity nor remorse.
+
+echo "Stopping httpd."
+
+{{ httpd_stop_command }}
+
+
+echo "Starting httpd."
+
+{{ httpd_start_command }}

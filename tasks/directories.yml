@@ -1,0 +1,23 @@
+---
+# tasks file for httpd_core
+- name:
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ httpd_user }}"
+    group: "{{ httpd_group }}"
+    mode: "{{ httpd_dirmode }}"
+  with_items:
+    - "{{ httpd_serverroot }}"
+    - "{{ httpd_conf_dir }}"
+    - "{{ httpd_confd_dir }}"
+    - "{{ httpd_moduleconf_dir }}"
+    - "{{ httpd_log_dir }}"
+
+- name: ensure docroot
+  file:
+    path: "{{ httpd_docroot_dir }}"
+    state: directory
+    owner: "{{ httpd_user }}"
+    group: "{{ httpd_docroot_group }}"
+    mode: "{{ httpd_docroot_mode }}"

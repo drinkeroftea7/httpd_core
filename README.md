@@ -1,4 +1,4 @@
-Role Name
+httpd_core
 =========
 
 A brief description of the role goes here.

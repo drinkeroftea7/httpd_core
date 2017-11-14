@@ -1,2 +1,3 @@
 ---
 # tasks file for httpd_core
+- include: directories.yml
