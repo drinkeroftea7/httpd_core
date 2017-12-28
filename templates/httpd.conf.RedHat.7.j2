@@ -57,6 +57,7 @@ LogLevel warn
     CustomLog "logs/access_log" combined
 </IfModule>
 
+{% if httpd_allow_cgi %}
 <IfModule alias_module>
 
 
@@ -69,6 +70,7 @@ LogLevel warn
     Options None
     Require all granted
 </Directory>
+{% endif %}
 
 <IfModule mime_module>
     TypesConfig /etc/mime.types

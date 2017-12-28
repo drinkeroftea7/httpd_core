@@ -1,0 +1,10 @@
+---
+# tasks file for httpd_core
+- name:
+  file:
+    src: 01-cgi.{{ ansible_os_family }}.{{ ansible_distribution_major_version }}.conf
+    dest: "{{ httpd_moduleconf_dir }}/01-cgi.conf"
+    owner: "{{ httpd_user }}"
+    group: "{{ httpd_group }}"
+    mode: "{{ httpd_mode }}"
+  when: httpd_allow_cgi

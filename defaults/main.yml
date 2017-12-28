@@ -8,6 +8,7 @@ httpd_user: htadmin
 httpd_group: htadmin
 
 httpd_dirmode: 0750
+httpd_mode: 0640
 
 httpd_serverroot: "{{ httpd_basedir }}/httpd"
 httpd_conf_dir: "{{ httpd_serverroot }}/conf"
@@ -18,3 +19,5 @@ httpd_log_dir: "{{ httpd_serverroot }}/logs/httpd"
 httpd_docroot_dir: "{{ httpd_basedir }}/docroot"
 httpd_docroot_group: "{{ httpd_group }}"
 httpd_docroot_mode: "{{ httpd_dirmode }}"
+httpd_allow_htaccess: false
+httpd_allow_cgi: false
