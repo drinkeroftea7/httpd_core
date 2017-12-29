@@ -7,8 +7,13 @@ httpd_basedir: /opt
 httpd_user: htadmin
 httpd_group: htadmin
 
+httpd_osver: "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}"
+
+# role-specific variables
 httpd_dirmode: 0750
 httpd_mode: 0640
+
+httpd_servicename: httpd
 
 httpd_serverroot: "{{ httpd_basedir }}/httpd"
 httpd_conf_dir: "{{ httpd_serverroot }}/conf"
@@ -21,3 +26,8 @@ httpd_docroot_group: "{{ httpd_group }}"
 httpd_docroot_mode: "{{ httpd_dirmode }}"
 httpd_allow_htaccess: false
 httpd_allow_cgi: false
+
+# The value set at the global level.
+# Virtual hosts for services that need a different support contacts can
+# set a contact in their own vhost entry.
+httpd_serveradmin: admin@localhost

@@ -1,0 +1,3 @@
+---
+# vars file for httpd_core
+httpd_is_systemd: false

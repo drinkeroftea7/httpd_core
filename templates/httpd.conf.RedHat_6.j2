@@ -2,7 +2,7 @@
 
 ServerTokens OS
 
-ServerRoot "/etc/httpd"
+ServerRoot {{ httpd_serverroot | quote }}
 
 PidFile run/httpd.pid
 
@@ -35,16 +35,16 @@ MaxRequestsPerChild  0
 
 Listen 80
 
-Include conf.modules.d/*.conf
+Include {{ httpd_moduleconf_dir }}/*.conf
 
-Include conf.d/*.conf
-
-
-User apache
-Group apache
+IncludeOptional {{ httpd_confd_dir }}/*.conf
 
 
-ServerAdmin root@localhost
+User {{ httpd_user }}
+Group {{ httpd_group }}
+
+
+ServerAdmin {{ httpd_serveradmin }}
 
 
 UseCanonicalName Off
@@ -92,14 +92,14 @@ TypesConfig /etc/mime.types
 DefaultType text/plain
 
 <IfModule mod_mime_magic.c>
-    MIMEMagicFile conf/magic
+    MIMEMagicFile {{ httpd_conf_dir }}/magic
 </IfModule>
 
 HostnameLookups Off
 
 
 
-ErrorLog logs/error_log
+ErrorLog {{ httpd_log_dir }}/error_log
 
 LogLevel warn
 
@@ -111,7 +111,7 @@ LogFormat "%{User-agent}i" agent
 
 
 
-CustomLog logs/access_log combined
+CustomLog {{ httpd_log_dir }}/access_log combined
 
 ServerSignature On
 

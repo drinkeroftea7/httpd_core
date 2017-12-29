@@ -5,4 +5,8 @@
 
 echo "Stopping httpd."
 
-{{ httpd_stop_command }}
+{% if httpd_is_systemd %}
+sudo /usr/bin/systemctl stop {{ httpd_servicename }}
+{% else %}
+sudo /sbin/service {{ httpd_servicename }} stop
+{% endif %}

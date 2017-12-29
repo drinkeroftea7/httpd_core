@@ -1,4 +1,8 @@
 ---
 # tasks file for httpd_core
+- name: Include OS-specific variables
+  include_vars: "{{ httpd_osver }}.yml"
+
 - include: directories.yml
-- include: moduledir_files.yml
+- include: core_conffiles.yml
+- include: module_conffiles.yml
