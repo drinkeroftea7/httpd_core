@@ -1,24 +1,37 @@
-
 ServerRoot {{ httpd_serverroot | quote }}
 
-Listen 80
+Listen {{ httpd_port }}
+{% if httpd_use_ssl %}
+Listen {{ httpd_port_ssl }}
+{% endif %}
 
 Include {{ httpd_moduleconf_dir }}/*.conf
 
 User {{ httpd_user }}
 Group {{ httpd_group }}
 
-
 ServerAdmin {{ httpd_serveradmin }}
 
+IncludeOptional {{ httpd_confd_dir }}/*.conf
+
+PidFile run/httpd.pid
+
+Timeout 60
+
+KeepAlive Off
+
+MaxKeepAliveRequests 100
+
+KeepAliveTimeout 15
+
+AddDefaultCharset UTF-8
+
+DocumentRoot {{ httpd_docroot_dir | quote }}
 
 <Directory />
     AllowOverride none
     Require all denied
 </Directory>
-
-
-DocumentRoot {{ httpd_docroot_dir | quote }}
 
 <Directory {{ httpd_docroot_dir | quote }}>
     Options Indexes FollowSymLinks
@@ -57,7 +70,6 @@ LogLevel warn
 {% if httpd_allow_cgi %}
 <IfModule alias_module>
 
-
     ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
 
 </IfModule>
@@ -69,25 +81,7 @@ LogLevel warn
 </Directory>
 {% endif %}
 
-<IfModule mime_module>
-    TypesConfig /etc/mime.types
-
-    AddType application/x-compress .Z
-    AddType application/x-gzip .gz .tgz
-
-
-
-    AddType text/html .shtml
-    AddOutputFilter INCLUDES .shtml
-</IfModule>
-
-AddDefaultCharset UTF-8
-
-<IfModule mime_magic_module>
-    MIMEMagicFile {{ httpd_conf_dir }}/magic
-</IfModule>
-
+ServerSignature On
+ServerTokens OS
 
 EnableSendfile on
-
-IncludeOptional {{ httpd_confd_dir }}/*.conf

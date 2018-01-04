@@ -27,6 +27,10 @@ httpd_docroot_mode: "{{ httpd_dirmode }}"
 httpd_allow_htaccess: false
 httpd_allow_cgi: false
 
+httpd_port: 80
+httpd_use_ssl: true
+httpd_port_ssl: 443
+
 # The value set at the global level.
 # Virtual hosts for services that need a different support contacts can
 # set a contact in their own vhost entry.
