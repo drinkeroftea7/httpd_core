@@ -11,6 +11,7 @@
     - "{{ httpd_serverroot }}"
     - "{{ httpd_conf_dir }}"
     - "{{ httpd_confd_dir }}"
+    - "{{ httpd_vhost_dir }}"
     - "{{ httpd_moduleconf_dir }}"
     - "{{ httpd_log_dir }}"
 

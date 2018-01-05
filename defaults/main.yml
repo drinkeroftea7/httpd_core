@@ -2,6 +2,7 @@
 # defaults file for httpd_core
 
 httpd_basedir: /opt
+httpd_certdir: "{{ httpd_basedir }}/ssl"
 
 # role-specific variables
 httpd_user: htadmin
@@ -14,22 +15,30 @@ httpd_dirmode: 0750
 httpd_mode: 0640
 
 httpd_servicename: httpd
+httpd_hostname: "{{ inventory_hostname }}"
 
 httpd_serverroot: "{{ httpd_basedir }}/httpd"
 httpd_conf_dir: "{{ httpd_serverroot }}/conf"
 httpd_confd_dir: "{{ httpd_serverroot }}/conf.d"
+httpd_vhost_dir: "{{ httpd_serverroot }}/vhosts"
 httpd_moduleconf_dir: "{{ httpd_serverroot }}/conf.modules.d"
 httpd_log_dir: "{{ httpd_serverroot }}/logs/httpd"
 
 httpd_docroot_dir: "{{ httpd_basedir }}/docroot"
 httpd_docroot_group: "{{ httpd_group }}"
 httpd_docroot_mode: "{{ httpd_dirmode }}"
+
+httpd_default_vhost: true
 httpd_allow_htaccess: false
 httpd_allow_cgi: false
 
 httpd_port: 80
 httpd_use_ssl: true
 httpd_port_ssl: 443
+
+httpd_defaultcert: "{{ httpd_certdir }}/{{ httpd_hostname }}.crt"
+httpd_defaultkey: "{{ httpd_certdir }}/{{ httpd_hostname }}.key"
+httpd_defaultCA: "/etc/pki/tls/certs"
 
 # The value set at the global level.
 # Virtual hosts for services that need a different support contacts can

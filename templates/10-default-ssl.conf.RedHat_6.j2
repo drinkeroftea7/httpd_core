@@ -1,0 +1,16 @@
+<VirtualHost *:{{ httpd_port_ssl }}>
+  ServerName {{ httpd_hostname }}
+
+  DocumentRoot {{ httpd_default_docroot_dir | quote }}
+  <Directory {{ httpd_default_docroot_dir | quote }}>
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  SSLEngine on
+  SSLCertificateFile {{ httpd_defaultcert }}
+  SSLCertificateKeyFile {{ httpd_defaultkey }}
+  SSLCACertificatePath {{ httpd_defaultCA }}
+</VirtualHost>

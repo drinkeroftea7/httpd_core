@@ -5,14 +5,13 @@ Listen {{ httpd_port }}
 Listen {{ httpd_port_ssl }}
 {% endif %}
 
-Include {{ httpd_moduleconf_dir }}/*.conf
-
 User {{ httpd_user }}
 Group {{ httpd_group }}
 
-ServerAdmin {{ httpd_serveradmin }}
-
+Include {{ httpd_moduleconf_dir }}/*.conf
 IncludeOptional {{ httpd_confd_dir }}/*.conf
+
+ServerAdmin {{ httpd_serveradmin }}
 
 PidFile run/httpd.pid
 
@@ -26,22 +25,9 @@ KeepAliveTimeout 15
 
 AddDefaultCharset UTF-8
 
-DocumentRoot {{ httpd_docroot_dir | quote }}
-
 <Directory />
     Options FollowSymLinks
     AllowOverride None
-</Directory>
-
-<Directory {{ httpd_docroot_dir | quote }}>
-
-    Options Indexes FollowSymLinks
-
-    AllowOverride None
-
-    Order allow,deny
-    Allow from all
-
 </Directory>
 
 DirectoryIndex index.html index.html.var
@@ -68,66 +54,12 @@ LogFormat "%{User-agent}i" agent
 
 CustomLog {{ httpd_log_dir }}/access_log combined
 
-
-
-
-{% if httpd_allow_cgi %}
-ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
-
-<Directory "/var/www/cgi-bin">
-    AllowOverride None
-    Options None
-    Order allow,deny
-    Allow from all
-</Directory>
-{% endif %}
-
 ServerSignature On
 ServerTokens OS
-
-Alias /icons/ "/var/www/icons/"
-
-<Directory "/var/www/icons">
-    Options Indexes MultiViews FollowSymLinks
-    AllowOverride None
-    Order allow,deny
-    Allow from all
-</Directory>
 
 <IfModule mod_dav_fs.c>
     DAVLockDB /var/lib/dav/lockdb
 </IfModule>
-
-AddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip
-
-AddIconByType (TXT,/icons/text.gif) text/*
-AddIconByType (IMG,/icons/image2.gif) image/*
-AddIconByType (SND,/icons/sound2.gif) audio/*
-AddIconByType (VID,/icons/movie.gif) video/*
-
-AddIcon /icons/binary.gif .bin .exe
-AddIcon /icons/binhex.gif .hqx
-AddIcon /icons/tar.gif .tar
-AddIcon /icons/world2.gif .wrl .wrl.gz .vrml .vrm .iv
-AddIcon /icons/compressed.gif .Z .z .tgz .gz .zip
-AddIcon /icons/a.gif .ps .ai .eps
-AddIcon /icons/layout.gif .html .shtml .htm .pdf
-AddIcon /icons/text.gif .txt
-AddIcon /icons/c.gif .c
-AddIcon /icons/p.gif .pl .py
-AddIcon /icons/f.gif .for
-AddIcon /icons/dvi.gif .dvi
-AddIcon /icons/uuencoded.gif .uu
-AddIcon /icons/script.gif .conf .sh .shar .csh .ksh .tcl
-AddIcon /icons/tex.gif .tex
-AddIcon /icons/bomb.gif /core
-
-AddIcon /icons/back.gif ..
-AddIcon /icons/hand.right.gif README
-AddIcon /icons/folder.gif ^^DIRECTORY^^
-AddIcon /icons/blank.gif ^^BLANKICON^^
-
-DefaultIcon /icons/unknown.gif
 
 Alias /error/ "/var/www/error/"
 
@@ -171,16 +103,4 @@ MaxRequestsPerChild  0
 
 </IfModule>
 
-BrowserMatch "Mozilla/2" nokeepalive
-BrowserMatch "MSIE 4\.0b2;" nokeepalive downgrade-1.0 force-response-1.0
-BrowserMatch "RealPlayer 4\.0" force-response-1.0
-BrowserMatch "Java/1\.0" force-response-1.0
-BrowserMatch "JDK/1\.0" force-response-1.0
-
-BrowserMatch "Microsoft Data Access Internet Publishing Provider" redirect-carefully
-BrowserMatch "MS FrontPage" redirect-carefully
-BrowserMatch "^WebDrive" redirect-carefully
-BrowserMatch "^WebDAVFS/1.[0123]" redirect-carefully
-BrowserMatch "^gnome-vfs/1.0" redirect-carefully
-BrowserMatch "^XML Spy" redirect-carefully
-BrowserMatch "^Dreamweaver-WebDAV-SCM1" redirect-carefully
+IncludeOptional {{ httpd_vhost_dir }}/*.conf
