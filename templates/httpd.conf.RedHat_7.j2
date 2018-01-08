@@ -1,9 +1,6 @@
 ServerRoot {{ httpd_serverroot | quote }}
 
 Listen {{ httpd_port }}
-{% if httpd_use_ssl %}
-Listen {{ httpd_port_ssl }}
-{% endif %}
 
 User {{ httpd_user }}
 Group {{ httpd_group }}

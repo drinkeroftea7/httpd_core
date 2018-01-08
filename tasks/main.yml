@@ -3,6 +3,9 @@
 - name: Include OS-specific variables
   include_vars: "{{ httpd_osver }}.yml"
 
-- include: directories.yml
-- include: core_conffiles.yml
-- include: module_conffiles.yml
+- import_tasks: directories.yml
+- import_tasks: core_conffiles.yml
+- import_tasks: ssl.yml
+  when: {{ httpd_use_ssl }}
+- import_tasks: cgi.yml
+  when: {{ httpd_allow_cgi }}
