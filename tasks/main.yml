@@ -3,9 +3,20 @@
 - name: Include OS-specific variables
   include_vars: "{{ httpd_osver }}.yml"
 
-- import_tasks: directories.yml
-- import_tasks: core_conffiles.yml
-- import_tasks: ssl.yml
+- name: Create needed directories and links
+  import_tasks: directories.yml
+
+- name: set core configuration files
+  import_tasks: core_conffiles.yml
+
+- name: set ssl settings
+  import_tasks: ssl.yml
   when: {{ httpd_use_ssl }}
-- import_tasks: cgi.yml
+
+- name: load cgi modules if needed
+  import_tasks: cgi.yml
   when: {{ httpd_allow_cgi }}
+
+- name: set default vhost(s) as needed
+  import_tasks: default_vhost.yml
+  when: {{ httpd_default_vhost }}

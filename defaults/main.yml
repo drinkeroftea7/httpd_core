@@ -17,6 +17,7 @@ httpd_mode: 0640
 httpd_servicename: httpd
 httpd_hostname: "{{ inventory_hostname }}"
 
+# The directories that the httpd instance will use
 httpd_serverroot: "{{ httpd_basedir }}/httpd"
 httpd_conf_dir: "{{ httpd_serverroot }}/conf"
 httpd_confd_dir: "{{ httpd_serverroot }}/conf.d"
@@ -24,17 +25,33 @@ httpd_vhost_dir: "{{ httpd_serverroot }}/vhosts"
 httpd_moduleconf_dir: "{{ httpd_serverroot }}/conf.modules.d"
 httpd_log_dir: "{{ httpd_serverroot }}/logs/httpd"
 
-httpd_docroot_dir: "{{ httpd_basedir }}/docroot"
-httpd_docroot_group: "{{ httpd_group }}"
-httpd_docroot_mode: "{{ httpd_dirmode }}"
+# system run file location and module install directory
+# unlike the above, these are the general system locations to target
+# instead of instance-specific locations
+httpd_run_dir: /var/run
+httpd_module_dir: /usr/lib/lookitup
+
+httpd_default_docroot_dir: "{{ httpd_basedir }}/docroot"
+httpd_default_docroot_group: "{{ httpd_group }}"
+httpd_default_docroot_mode: "{{ httpd_dirmode }}"
 
 httpd_default_vhost: true
+
+# if true, default cleartext vhost will simply redirect to ssl
+# requires httpd_allow_cleartext=true,
+# or else there won't be a non-ssl default vhost
+httpd_default_vhost_ssl_redirect: false
+
 httpd_allow_htaccess: false
 httpd_allow_cgi: false
 
-httpd_port: 80
+# allow a cleartext (non-ssl) listener to be opened
+httpd_allow_cleartext: true
+httpd_cleartext_port: 80
+
+# enable use of ssl
 httpd_use_ssl: true
-httpd_port_ssl: 443
+httpd_ssl_port: 443
 
 httpd_ssl_protocols: "all -SSLv2 -SSLv3"
 httpd_ssl_ciphers: "ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:ECDHE-ECDSA-DES-CBC3-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA:!DSS"
