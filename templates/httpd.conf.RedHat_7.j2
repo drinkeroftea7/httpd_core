@@ -1,6 +1,6 @@
 ServerRoot {{ httpd_serverroot | quote }}
 
-Listen {{ httpd_cleartext_port }}
+Listen {{ httpd_plaintext_port }}
 
 User {{ httpd_user }}
 Group {{ httpd_group }}

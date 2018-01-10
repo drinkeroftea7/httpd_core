@@ -37,17 +37,17 @@ httpd_default_docroot_mode: "{{ httpd_dirmode }}"
 
 httpd_default_vhost: true
 
-# if true, default cleartext vhost will simply redirect to ssl
-# requires httpd_allow_cleartext=true,
+# if true, default plaintext vhost will simply redirect to ssl
+# requires httpd_allow_plaintext=true,
 # or else there won't be a non-ssl default vhost
 httpd_default_vhost_ssl_redirect: false
 
 httpd_allow_htaccess: false
 httpd_allow_cgi: false
 
-# allow a cleartext (non-ssl) listener to be opened
-httpd_allow_cleartext: true
-httpd_cleartext_port: 80
+# allow a plaintext (non-ssl) listener to be opened
+httpd_allow_plaintext: true
+httpd_plaintext_port: 80
 
 # enable use of ssl
 httpd_use_ssl: true

@@ -1,4 +1,4 @@
-<VirtualHost *:{{ httpd_cleartext_port }}>
+<VirtualHost *:{{ httpd_plaintext_port }}>
   ServerName {{ httpd_hostname }}
 
   DocumentRoot {{ httpd_default_docroot_dir | quote }}
