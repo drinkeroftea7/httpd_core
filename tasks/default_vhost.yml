@@ -15,7 +15,7 @@
     owner: "{{ httpd_user }}"
     group: "{{ httpd_group }}"
     mode: "{{ httpd_mode }}"
-  when: {{ httpd_allow_plaintext }}
+  when: httpd_allow_plaintext
 - name: Set default ssl vhost
   template:
     src: 10-default-ssl.conf.{{ httpd_osver }}.j2
@@ -23,4 +23,4 @@
     owner: "{{ httpd_user }}"
     group: "{{ httpd_group }}"
     mode: "{{ httpd_mode }}"
-  when: {{ httpd_use_ssl }}
+  when: httpd_use_ssl

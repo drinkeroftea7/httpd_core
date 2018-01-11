@@ -28,8 +28,11 @@ httpd_log_dir: "{{ httpd_serverroot }}/logs/httpd"
 # system run file location and module install directory
 # unlike the above, these are the general system locations to target
 # instead of instance-specific locations
-httpd_run_dir: /var/run
-httpd_module_dir: /usr/lib/lookitup
+# when implementing RHEL 5 support, the run dir will be /var/run
+# unless something makes a /var/run/httpd (would require root)
+# module dir will be the same.
+httpd_run_dir: /var/run/httpd
+httpd_module_dir: /usr/lib64/httpd/modules
 
 httpd_default_docroot_dir: "{{ httpd_basedir }}/docroot"
 httpd_default_docroot_group: "{{ httpd_group }}"
