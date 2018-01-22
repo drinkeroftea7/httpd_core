@@ -11,7 +11,7 @@
 - name: Set default plaintext (non-ssl) vhost
   template:
     src: 10-default-plaintext.conf.{{ httpd_osver }}.j2
-    dest: "{{ httpd_confd_dir }}/10-default-plaintext.conf"
+    dest: "{{ httpd_vhost_dir }}/10-default-plaintext.conf"
     owner: "{{ httpd_user }}"
     group: "{{ httpd_group }}"
     mode: "{{ httpd_mode }}"
@@ -19,7 +19,7 @@
 - name: Set default ssl vhost
   template:
     src: 10-default-ssl.conf.{{ httpd_osver }}.j2
-    dest: "{{ httpd_confd_dir }}/10-default-ssl.conf"
+    dest: "{{ httpd_vhost_dir }}/10-default-ssl.conf"
     owner: "{{ httpd_user }}"
     group: "{{ httpd_group }}"
     mode: "{{ httpd_mode }}"

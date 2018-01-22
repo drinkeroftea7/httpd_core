@@ -11,8 +11,8 @@ httpd_group: htadmin
 httpd_osver: "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}"
 
 # role-specific variables
-httpd_dirmode: 0750
-httpd_mode: 0640
+httpd_dirmode: "0750"
+httpd_mode: "0640"
 
 httpd_servicename: httpd
 httpd_hostname: "{{ inventory_hostname }}"

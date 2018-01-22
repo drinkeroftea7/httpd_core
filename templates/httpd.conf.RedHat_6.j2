@@ -6,7 +6,7 @@ User {{ httpd_user }}
 Group {{ httpd_group }}
 
 Include {{ httpd_moduleconf_dir }}/*.conf
-IncludeOptional {{ httpd_confd_dir }}/*.conf
+Include {{ httpd_confd_dir }}/*.conf
 
 ServerAdmin {{ httpd_serveradmin }}
 
@@ -100,4 +100,4 @@ MaxRequestsPerChild  0
 
 </IfModule>
 
-IncludeOptional {{ httpd_vhost_dir }}/*.conf
+Include {{ httpd_vhost_dir }}/*.conf
