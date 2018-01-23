@@ -3,7 +3,7 @@
 
   DocumentRoot {{ httpd_default_docroot_dir | quote }}
   <Directory {{ httpd_default_docroot_dir | quote }}>
-      Options Indexes FollowSymLinks
+      Options FollowSymLinks
 
       AllowOverride None
 

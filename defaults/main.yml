@@ -10,7 +10,6 @@ httpd_group: htadmin
 
 httpd_osver: "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}"
 
-# role-specific variables
 httpd_dirmode: "0750"
 httpd_mode: "0640"
 
@@ -28,11 +27,12 @@ httpd_log_dir: "{{ httpd_serverroot }}/logs/httpd"
 # system run file location and module install directory
 # unlike the above, these are the general system locations to target
 # instead of instance-specific locations
+httpd_module_dir: /usr/lib64/httpd/modules
+
 # when implementing RHEL 5 support, the run dir will be /var/run
 # unless something makes a /var/run/httpd (would require root)
 # module dir will be the same.
 httpd_run_dir: /var/run/httpd
-httpd_module_dir: /usr/lib64/httpd/modules
 
 httpd_default_docroot_dir: "{{ httpd_basedir }}/docroot"
 httpd_default_docroot_group: "{{ httpd_group }}"
@@ -61,6 +61,7 @@ httpd_ssl_ciphers: "ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:EC
 
 httpd_defaultcert: "{{ httpd_certdir }}/{{ httpd_hostname }}.crt"
 httpd_defaultkey: "{{ httpd_certdir }}/{{ httpd_hostname }}.key"
+# when implementing RHEL 5 support, the defaultCA path will be different.
 httpd_defaultCA: "/etc/pki/tls/certs"
 
 # The value set at the global level.

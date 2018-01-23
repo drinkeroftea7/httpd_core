@@ -9,6 +9,7 @@ Include {{ httpd_moduleconf_dir }}/*.conf
 Include {{ httpd_confd_dir }}/*.conf
 
 ServerAdmin {{ httpd_serveradmin }}
+ServerName {{ httpd_hostname }}
 
 PidFile run/httpd.pid
 
