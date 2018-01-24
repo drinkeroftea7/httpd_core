@@ -21,6 +21,13 @@
     owner: "{{ httpd_user }}"
     group: "{{ httpd_group }}"
     mode: "{{ httpd_mode }}"
+- name: Manage mime module file
+  copy:
+    src: 00-mime.{{ httpd_osver }}.conf
+    dest: "{{ httpd_moduleconf_dir }}/00-mime.conf"
+    owner: "{{ httpd_user }}"
+    group: "{{ httpd_group }}"
+    mode: "{{ httpd_mode }}"
 - name: Set mime.conf
   template:
     src: mime.conf.{{ httpd_osver }}.j2

@@ -43,10 +43,9 @@ httpd_default_vhost: true
 # if true, default plaintext vhost will simply redirect to ssl
 # requires httpd_allow_plaintext=true,
 # or else there won't be a non-ssl default vhost
-httpd_default_vhost_ssl_redirect: false
+httpd_default_vhost_ssl_redirect: true
 
 httpd_allow_htaccess: false
-httpd_allow_cgi: false
 
 # allow a plaintext (non-ssl) listener to be opened
 httpd_allow_plaintext: true

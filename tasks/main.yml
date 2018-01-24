@@ -13,10 +13,6 @@
   import_tasks: ssl.yml
   when: httpd_use_ssl
 
-- name: load cgi modules if needed
-  import_tasks: cgi.yml
-  when: httpd_allow_cgi
-
 - name: set default vhost(s) as needed
   import_tasks: default_vhost.yml
   when: httpd_default_vhost

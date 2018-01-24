@@ -1,6 +1,10 @@
 <VirtualHost *:{{ httpd_plaintext_port }}>
   ServerName {{ httpd_hostname }}
-
+{% if httpd_default_vhost_ssl_redirect %}
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+{% else %}
   DocumentRoot {{ httpd_default_docroot_dir | quote }}
   <Directory {{ httpd_default_docroot_dir | quote }}>
       Options FollowSymLinks
@@ -10,4 +14,5 @@
       Order allow,deny
       Allow from all
   </Directory>
+{% endif %}
 </VirtualHost>
