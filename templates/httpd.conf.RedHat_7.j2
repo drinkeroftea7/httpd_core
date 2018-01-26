@@ -1,6 +1,8 @@
 ServerRoot {{ httpd_serverroot | quote }}
 
+{% if httpd_allow_plaintext %}
 Listen {{ httpd_plaintext_port }}
+{% endif %}
 
 User {{ httpd_user }}
 Group {{ httpd_group }}
