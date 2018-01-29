@@ -22,6 +22,7 @@ httpd_conf_dir: "{{ httpd_serverroot }}/conf"
 httpd_confd_dir: "{{ httpd_serverroot }}/conf.d"
 httpd_vhost_dir: "{{ httpd_serverroot }}/vhosts"
 httpd_moduleconf_dir: "{{ httpd_serverroot }}/conf.modules.d"
+httpd_custom_modules_dir: "{{ httpd_serverroot }}/custom_modules"
 httpd_log_dir: "{{ httpd_serverroot }}/logs/httpd"
 
 # system run file location and module install directory

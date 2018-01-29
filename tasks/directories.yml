@@ -14,6 +14,7 @@
     - "{{ httpd_vhost_dir }}"
     - "{{ httpd_moduleconf_dir }}"
     - "{{ httpd_log_dir }}"
+    - "{{ httpd_custom_modules_dir }}"
 
 - name: Symlink serverroot/run to {{ httpd_run_dir }}
   file:
