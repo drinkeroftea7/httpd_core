@@ -34,11 +34,9 @@ AddDefaultCharset UTF-8
     DirectoryIndex index.html
 </IfModule>
 
-{% if httpd_allow_htaccess %}
 <Files ".ht*">
     Require all denied
 </Files>
-{% endif %}
 
 ErrorLog "{{ httpd_log_dir }}/error_log"
 

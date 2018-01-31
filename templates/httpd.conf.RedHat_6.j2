@@ -32,7 +32,6 @@ AddDefaultCharset UTF-8
 
 DirectoryIndex index.html index.html.var
 
-{% if httpd_allow_htaccess %}
 AccessFileName .htaccess
 
 <Files ~ "^\.ht">
@@ -40,8 +39,6 @@ AccessFileName .htaccess
     Deny from all
     Satisfy All
 </Files>
-
-{% endif %}
 
 ErrorLog {{ httpd_log_dir }}/error_log
 

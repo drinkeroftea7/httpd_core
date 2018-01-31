@@ -46,8 +46,6 @@ httpd_default_vhost: true
 # or else there won't be a non-ssl default vhost
 httpd_default_vhost_ssl_redirect: true
 
-httpd_allow_htaccess: false
-
 # allow a plaintext (non-ssl) listener to be opened
 httpd_allow_plaintext: true
 httpd_plaintext_port: 80
