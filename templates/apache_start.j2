@@ -1,7 +1,5 @@
 #!/bin/bash
-# {{ ansible_managed }}
-# All manual changes will be reverted by the next Ansible run,
-# Which knows neither pity nor remorse.
+{{ ansible_managed | comment }}
 
 echo "Starting httpd."
 

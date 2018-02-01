@@ -1,3 +1,4 @@
+{{ ansible_managed | comment }}
 ServerRoot {{ httpd_serverroot | quote }}
 
 {% if httpd_allow_plaintext %}
