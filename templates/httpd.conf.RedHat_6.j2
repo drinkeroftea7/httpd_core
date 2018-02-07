@@ -52,12 +52,10 @@ LogFormat "%{User-agent}i" agent
 
 CustomLog {{ httpd_log_dir }}/access_log combined
 
-ServerSignature On
-ServerTokens OS
+ServerSignature Off
+ServerTokens Prod
 
-<IfModule mod_dav_fs.c>
-    DAVLockDB /var/lib/dav/lockdb
-</IfModule>
+FileETag None
 
 Alias /error/ "/var/www/error/"
 

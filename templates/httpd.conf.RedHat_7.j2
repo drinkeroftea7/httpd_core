@@ -55,8 +55,10 @@ LogLevel warn
     CustomLog "{{ httpd_log_dir }}/access_log" combined
 </IfModule>
 
-ServerSignature On
-ServerTokens OS
+ServerSignature Off
+ServerTokens Prod
+
+FileETag None
 
 EnableSendfile on
 
