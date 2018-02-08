@@ -12,7 +12,6 @@ Separate roles or playbook task can load additional modules by adding config fil
 TODO:
 
 - Variablize the timeout settings.
-- Trim down the set of modules loaded in the 00-base.conf files to a more basic core that will conflict with the fewest possible use cases.
 - If other installations besides the vanilla RHEL rpm is supported, consider recasting the RedHat 6 and RedHat 7 configs as httpd 2.2 and httpd 2.4, respectively.
 - RHEL 5 support. Should be same as RHEL 6 (same version of httpd), except where indicated by comments.
 

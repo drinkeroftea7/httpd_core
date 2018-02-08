@@ -18,17 +18,19 @@ PidFile run/httpd.pid
 
 Timeout 60
 
-KeepAlive Off
+KeepAlive On
 
 MaxKeepAliveRequests 100
 
-KeepAliveTimeout 15
+KeepAliveTimeout 5
 
 AddDefaultCharset UTF-8
 
 <Directory />
-    Options FollowSymLinks
+    Options FollowSymLinks -Indexes
     AllowOverride None
+    Order Deny,Allow
+    Deny from all
 </Directory>
 
 DirectoryIndex index.html index.html.var
@@ -45,7 +47,7 @@ ErrorLog {{ httpd_log_dir }}/error_log
 
 LogLevel warn
 
-LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"  %I %O" combined
 LogFormat "%h %l %u %t \"%r\" %>s %b" common
 LogFormat "%{Referer}i -> %U" referer
 LogFormat "%{User-agent}i" agent
@@ -56,25 +58,6 @@ ServerSignature Off
 ServerTokens Prod
 
 FileETag None
-
-Alias /error/ "/var/www/error/"
-
-<IfModule mod_negotiation.c>
-<IfModule mod_include.c>
-    <Directory "/var/www/error">
-        AllowOverride None
-        Options IncludesNoExec
-        AddOutputFilter Includes html
-        AddHandler type-map var
-        Order allow,deny
-        Allow from all
-        LanguagePriority en es de fr
-        ForceLanguagePriority Prefer Fallback
-    </Directory>
-
-
-</IfModule>
-</IfModule>
 
 <IfModule prefork.c>
 StartServers       8
@@ -92,11 +75,6 @@ MinSpareThreads     25
 MaxSpareThreads     75 
 ThreadsPerChild     25
 MaxRequestsPerChild  0
-</IfModule>
-
-<IfModule mod_userdir.c>
-    UserDir disabled
-
 </IfModule>
 
 Include {{ httpd_vhost_dir }}/*.conf
