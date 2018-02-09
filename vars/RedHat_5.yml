@@ -1,0 +1,6 @@
+---
+# vars file for httpd_core
+httpd_is_systemd: false
+httpd_run_dir: /var/run
+httpd_defaultCA: "/etc/pki/tls/ca-bundle.crt"
+# 

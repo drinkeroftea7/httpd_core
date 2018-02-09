@@ -1,7 +1,7 @@
 httpd_core
 =========
 
-Version: 0.0.1
+Version: 0.0.3
 
 Role for managing core configuration for Apache HTTPD. Meant to be part of a modular configuration management approach.
 
@@ -11,7 +11,6 @@ Separate roles or playbook task can load additional modules by adding config fil
 
 TODO:
 
-- Variablize the timeout settings.
 - If other installations besides the vanilla RHEL rpm is supported, consider recasting the RedHat 6 and RedHat 7 configs as httpd 2.2 and httpd 2.4, respectively.
 - RHEL 5 support. Should be same as RHEL 6 (same version of httpd), except where indicated by comments.
 
@@ -25,7 +24,7 @@ Requirements
 Role Variables
 --------------
 
-**The following variables can be modified with any value that is compatible with the installed version of Apache HTTPD (2.2 for RHEL 6 and 2.4 RHEL 7) and related system dependencies**
+**The following variables can be modified with any value that is compatible with the installed version of Apache HTTPD (2.2 for RHEL 5 & 6 and 2.4 RHEL 7) and related system dependencies**
 - httpd_basedir
   - *Default value = /opt*
   - The base directory for your configuration path. The defaults for the following reference this variable:
@@ -66,6 +65,21 @@ Role Variables
   - *Default value = {{ httpd_serverroot }}/logs/httpd*
   - Directory for holding server logs.
   - The config files use this path directly, but a convenience symlink from httpd_serverroot/logs to this directory is still provided.
+- httpd_timeout:
+  - *Default value = 60*
+  - Timeout setting in httpd.conf
+- httpd_keepalive
+  - *Default value = 'On'*
+  - Keepalive setting in httpd.conf
+- httpd_keepalive_maxreqs
+  - *Default value = '100'*
+  - Max keepalive requests setting in httpd.conf
+- httpd_keepalive_timeout
+  - *Default value = '5'*
+  - Keepalive timeout setting in httpd.conf
+- httpd_charset_default
+  - *Default value = 'UTF-8'*
+  - Default charset value from httpd.conf
 - httpd_allow_plaintext
   - *Default value = true*
   - Boolean flag that determines if a non-encrypted listener is opened.

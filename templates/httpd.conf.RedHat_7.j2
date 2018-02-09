@@ -16,15 +16,11 @@ ServerName {{ httpd_hostname }}
 
 PidFile run/httpd.pid
 
-Timeout 60
-
-KeepAlive On
-
-MaxKeepAliveRequests 100
-
-KeepAliveTimeout 5
-
-AddDefaultCharset UTF-8
+Timeout {{ httpd_timeout }}
+KeepAlive {{ httpd_keepalive }}
+MaxKeepAliveRequests {{ httpd_keepalive_maxreqs }}
+KeepAliveTimeout {{ httpd_keepalive_timeout }}
+AddDefaultCharset {{ httpd_charset_default }}
 
 <Directory />
     Options -Indexes

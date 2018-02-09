@@ -35,10 +35,3 @@
     owner: "{{ httpd_user }}"
     group: "{{ httpd_group }}"
     mode: "{{ httpd_mode }}"
-- name: Set icons.conf
-  copy:
-    src: icons.{{ httpd_osver }}.conf
-    dest: "{{ httpd_confd_dir }}/icons.conf"
-    owner: "{{ httpd_user }}"
-    group: "{{ httpd_group }}"
-    mode: "{{ httpd_mode }}"

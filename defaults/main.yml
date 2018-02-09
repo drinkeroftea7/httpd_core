@@ -30,14 +30,19 @@ httpd_log_dir: "{{ httpd_serverroot }}/logs/httpd"
 # instead of instance-specific locations
 httpd_module_dir: /usr/lib64/httpd/modules
 
-# when implementing RHEL 5 support, the run dir will be /var/run
-# unless something makes a /var/run/httpd (would require root)
-# module dir will be the same.
+# For RHEL 5: overriden in vars files to be RHEL5 default of /var/run
 httpd_run_dir: /var/run/httpd
 
 httpd_default_docroot_dir: "{{ httpd_basedir }}/docroot"
 httpd_default_docroot_group: "{{ httpd_group }}"
 httpd_default_docroot_mode: "{{ httpd_dirmode }}"
+
+# Timeout and KeepAlive settings
+httpd_timeout: '60'
+httpd_keepalive: 'On'
+httpd_keepalive_maxreqs: '100'
+httpd_keepalive_timeout: '5'
+httpd_charset_default: 'UTF-8'
 
 httpd_default_vhost: true
 
