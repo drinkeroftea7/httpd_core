@@ -28,6 +28,14 @@
     owner: "{{ httpd_user }}"
     group: "{{ httpd_group }}"
     mode: "{{ httpd_mode }}"
+- name: Manage extended core module file, as needed
+  copy:
+    src: 03-extended_core.{{ httpd_osver }}.conf
+    dest: "{{ httpd_moduleconf_dir }}/03-extended_core.conf"
+    owner: "{{ httpd_user }}"
+    group: "{{ httpd_group }}"
+    mode: "{{ httpd_mode }}"
+  when: httpd_extendedcore
 - name: Set mime.conf
   template:
     src: mime.conf.{{ httpd_osver }}.j2

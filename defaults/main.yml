@@ -25,6 +25,16 @@ httpd_moduleconf_dir: "{{ httpd_serverroot }}/conf.modules.d"
 httpd_custom_modules_dir: "{{ httpd_serverroot }}/custom_modules"
 httpd_log_dir: "{{ httpd_serverroot }}/logs/httpd"
 
+# Use extended core modules: additional, commonly-used modules
+# that are not part of the minimum set of modules needed to support the
+# conf files provided by this module. Roles that build off this one for 
+# specific use cases should consider setting this to false and provide
+# its own extended set of modules based off the extended core file,
+# to reduce the possibility of conflicts.
+# If you add to this role (e.g) security headers settings or other core configs
+# that require additional modules, please add those to the 00-base file.
+httpd_extendedcore: true
+
 # system run file location and module install directory
 # unlike the above, these are the general system locations to target
 # instead of instance-specific locations
