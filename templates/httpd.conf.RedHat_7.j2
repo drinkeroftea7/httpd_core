@@ -29,7 +29,7 @@ AddDefaultCharset {{ httpd_charset_default }}
 </Directory>
 
 <IfModule dir_module>
-    DirectoryIndex index.html
+    DirectoryIndex index.html index.htm
 </IfModule>
 
 <Files ".ht*">
@@ -51,6 +51,7 @@ ServerSignature Off
 ServerTokens Prod
 
 FileETag None
+TraceEnable off
 
 EnableSendfile on
 

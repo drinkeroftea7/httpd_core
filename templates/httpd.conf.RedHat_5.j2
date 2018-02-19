@@ -29,7 +29,7 @@ AddDefaultCharset {{ httpd_charset_default }}
     Deny from all
 </Directory>
 
-DirectoryIndex index.html index.html.var
+DirectoryIndex index.html index.html.var index.htm
 
 AccessFileName .htaccess
 
@@ -54,6 +54,7 @@ ServerSignature Off
 ServerTokens Prod
 
 FileETag None
+TraceEnable off
 
 <IfModule prefork.c>
 StartServers       8

@@ -74,7 +74,7 @@ httpd_ssl_ciphers: "ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:EC
 
 httpd_defaultcert: "{{ httpd_certdir }}/{{ httpd_hostname }}.crt"
 httpd_defaultkey: "{{ httpd_certdir }}/{{ httpd_hostname }}.key"
-# when implementing RHEL 5 support, the defaultCA path will be different.
+#For RHEL 5: overriden in vars files to be RHEL5 default of /etc/pki/tls
 httpd_defaultCA: "/etc/pki/tls/certs"
 
 # The value set at the global level.

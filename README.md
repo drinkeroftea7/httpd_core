@@ -1,7 +1,7 @@
 httpd_core
 =========
 
-Version: 0.0.3
+Version: 0.0.4
 
 Role for managing core configuration for Apache HTTPD. Meant to be part of a modular configuration management approach.
 
@@ -12,7 +12,6 @@ Separate roles or playbook task can load additional modules by adding config fil
 TODO:
 
 - If other installations besides the vanilla RHEL rpm is supported, consider recasting the RedHat 6 and RedHat 7 configs as httpd 2.2 and httpd 2.4, respectively.
-- RHEL 5 support. Should be same as RHEL 6 (same version of httpd), except where indicated by comments.
 
 Requirements
 ------------
@@ -25,6 +24,7 @@ Role Variables
 --------------
 
 **The following variables can be modified with any value that is compatible with the installed version of Apache HTTPD (2.2 for RHEL 5 & 6 and 2.4 RHEL 7) and related system dependencies**
+
 - httpd_basedir
   - *Default value = /opt*
   - The base directory for your configuration path. The defaults for the following reference this variable:
@@ -148,12 +148,12 @@ Role Variables
 - httpd_run_dir
   - *Default value = /var/run/httpd*
   - The location of the pid file. This is a root-owned location, and the package-provided init script/unit file may hardcode this path.
-  - RHEL 5 puts the pid file directly under /var/run
+  - RHEL 5 puts the pid file directly under /var/run. This is set in the RedHat_5 var file.
   - The role creates a symlink to this directory at httpd_serverroot/run
 - httpd_defaultCA
   - *Default value = /etc/pki/tls/certs*
   - Location of the proper CA trust store. This is the path for the system-provided CA trust, which is managed through Puppet and Satellite.
-  - RHEL 5 has a different path. It also has a different method of providing a CA trust, which is less easily automated and may not contain the internal CAs.
+  - RHEL 5 has a different path (set in the RHEL 5 var file). It also has a different method of providing a CA trust, which is less easily automated.
 
 **Do not provide alternative values for the following. Doing so will break the role-generated config files unless you provide symlinks from the standard relative locations to the ones you set by overriding these variables.**
 
