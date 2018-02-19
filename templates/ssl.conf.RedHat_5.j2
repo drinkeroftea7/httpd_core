@@ -8,6 +8,8 @@ SSLHonorCipherOrder     on
 SSLSessionCache {{ httpd_ssl_sessioncache }}
 SSLSessionCacheTimeout {{ httpd_ssl_sessioncache_timeout }}
 
+SSLMutex default
+
 SSLRandomSeed startup builtin
 SSLRandomSeed startup file:/dev/urandom 512
 SSLRandomSeed connect builtin
