@@ -1,0 +1,20 @@
+{{ ansible_managed | comment }}
+Listen {{ httpd_ssl_port }}
+
+SSLProtocol             {{ httpd_ssl_protocols }}
+SSLCipherSuite          {{ httpd_ssl_ciphers }}
+SSLHonorCipherOrder     on
+
+SSLSessionCache {{ httpd_ssl_sessioncache }}
+SSLSessionCacheTimeout {{ httpd_ssl_sessioncache_timeout }}
+
+SSLRandomSeed startup builtin
+SSLRandomSeed startup file:/dev/urandom 512
+SSLRandomSeed connect builtin
+SSLRandomSeed connect file:/dev/urandom 512
+
+SSLCryptoDevice builtin
+
+AddType application/x-x509-ca-cert .crt
+AddType application/x-pkcs7-crl    .crl
+

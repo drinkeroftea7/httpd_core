@@ -10,7 +10,7 @@
     mode: "{{ httpd_mode }}"
 - name: Set ssl.conf
   template:
-    src: ssl.conf.j2
+    src: ssl.conf.{{ httpd_osver }}.j2
     dest: "{{ httpd_confd_dir }}/ssl.conf"
     owner: "{{ httpd_user }}"
     group: "{{ httpd_group }}"
